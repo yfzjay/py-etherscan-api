@@ -152,7 +152,11 @@ class Account(Client):
         Currently not implemented
         :return:
         """
-        pass
+        self.url_dict[self.TXHASH] = tx_hash
+        self.url_dict[self.ACTION] = 'txlistinternal'
+        self.build_url()
+        req = self.connect()
+        return req['result']
 
     def update_transactions(self, address, trans):
         """
